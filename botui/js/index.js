@@ -74,7 +74,6 @@ function serverMessage(response2) {
   }, 100 + (Math.random() * 20) * 100);
 
 }
-
 function fetchmsg(){
 
      var url = '/send-msg';
