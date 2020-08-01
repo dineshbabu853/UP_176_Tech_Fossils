@@ -8,7 +8,6 @@ const path = require('path');
 const sessionId=uuid.v4();
 
 
-//app.use(express.static("public"))
 app.get('/chatbot/botui/js/index.js', function (req, res) {
   const index = path.join(__dirname, 'botui', '/js/index.js');
   res.sendFile(index);
@@ -50,15 +49,19 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.post('/',(req,res)=>{
+  runSample(req.body.MSG).then(data=>{
+    res.send({Reply:data})
+  })
+  })
+
 app.post('/send-msg',(req,res)=>{
 runSample(req.body.MSG).then(data=>{
   res.send({Reply:data})
 })
 })
 
-/**
- * @param {string} projectId 
- */
+
 async function runSample(msg,projectId = 'test-agent-nocirr') {
   const sessionId = uuid.v4();
 
@@ -92,11 +95,6 @@ return result.fulfillmentText;
 }
 
 
-app.post('/',(req,res)=>{
-  runSample(req.body.MSG).then(data=>{
-    res.send({Reply:data})
-  })
-  })
 app.listen(port,()=>{
   console.log("running on port "+port);
 })
