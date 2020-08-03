@@ -49,19 +49,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.post('/',(req,res)=>{
-  runSample(req.body.MSG).then(data=>{
-    res.send({Reply:data})
-  })
-  })
-
-app.post('/send-msg',(req,res)=>{
-runSample(req.body.MSG).then(data=>{
-  res.send({Reply:data})
-})
-})
-
-
 async function runSample(msg,projectId = 'test-agent-nocirr') {
   const sessionId = uuid.v4();
 
@@ -93,6 +80,19 @@ async function runSample(msg,projectId = 'test-agent-nocirr') {
 return result.fulfillmentText;
 
 }
+
+app.post('/',(req,res)=>{
+  runSample(req.body.MSG).then(data=>{
+    res.send({Reply:data})
+  })
+  })
+
+app.post('/send-msg',(req,res)=>{
+runSample(req.body.MSG).then(data=>{
+  res.send({Reply:data})
+})
+})
+
 
 
 app.listen(port,()=>{
