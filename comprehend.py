@@ -1,6 +1,6 @@
 import boto3
 import os
-import nltk
+import pipi
 nltk.download('stopwords')
 nltk.download('wordnet')
 from nltk.corpus import stopwords 
@@ -17,7 +17,7 @@ def preprocess(text):
             result.append(lemmatize_stemming(token))
 
 
-def create_intent(project_id, display_name, training_phrases_parts,
+def create_intent( "test-agent-nocirr" , intent-1, training_phrases_parts,
                   message_texts):
     """Create an intent of the given intent type."""
     import dialogflow_v2 as dialogflow
